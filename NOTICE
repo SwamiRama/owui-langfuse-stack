@@ -1,0 +1,35 @@
+owui-langfuse-stack
+Copyright 2026 The owui-langfuse-stack contributors
+
+This product includes the configuration glue (docker-compose.yml,
+Caddyfile, .env.example) for assembling a self-hosted Open WebUI +
+Langfuse v3 + Caddy proof-of-concept stack. It bundles no source code
+of the upstream components themselves.
+
+The Docker images referenced from docker-compose.yml are produced and
+distributed by their respective upstream projects under their own
+licenses, summarized below for attribution. Each image's full license
+text ships inside the image and on the linked project page.
+
+  - Open WebUI            (BSD-3-Clause with Branding clause v0.6.6+)
+                          https://github.com/open-webui/open-webui
+  - Open WebUI Pipelines  (MIT)
+                          https://github.com/open-webui/pipelines
+  - Langfuse              (MIT, Enterprise Edition modules: commercial)
+                          https://github.com/langfuse/langfuse
+  - Caddy                 (Apache-2.0)
+                          https://github.com/caddyserver/caddy
+  - PostgreSQL            (PostgreSQL License — BSD-style)
+                          https://www.postgresql.org/about/licence/
+  - ClickHouse Server     (Apache-2.0)
+                          https://github.com/ClickHouse/ClickHouse
+  - Redis                 (RSALv2 / SSPLv1 dual-license, since 7.4)
+                          https://redis.io/legal/licenses/
+  - MinIO Server          (GNU AGPLv3)
+                          https://github.com/minio/minio
+
+Users of this stack are responsible for verifying that each upstream
+license is compatible with their intended use. In particular, MinIO's
+AGPLv3 license imposes obligations on network-served deployments;
+swap MinIO for a permissively-licensed S3-compatible alternative
+(e.g. SeaweedFS, Garage) if AGPLv3 is unsuitable.

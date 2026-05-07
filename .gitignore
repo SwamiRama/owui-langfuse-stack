@@ -1,0 +1,28 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Caddy auto-generated certs / state
+caddy_data/
+caddy_config/
+
+# Runtime data dirs (in case anyone bind-mounts instead of named volumes)
+postgres_data/
+clickhouse_data/
+clickhouse_logs/
+redis_data/
+minio_data/
+openwebui_data/
+pipelines_data/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

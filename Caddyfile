@@ -1,0 +1,40 @@
+# Caddy v2 reverse proxy with auto-HTTPS via Let's Encrypt.
+# Domain values come from .env (DOMAIN_OWUI, DOMAIN_LANGFUSE, ACME_EMAIL).
+
+{
+	email {$ACME_EMAIL}
+	# Uncomment for ACME staging while testing DNS:
+	# acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+{$DOMAIN_OWUI} {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Content-Type-Options    "nosniff"
+		X-Frame-Options           "DENY"
+		Referrer-Policy           "strict-origin-when-cross-origin"
+		Permissions-Policy        "interest-cohort=()"
+		-Server
+	}
+
+	# Open WebUI streams SSE for chat — disable response buffering.
+	reverse_proxy openwebui:8080 {
+		flush_interval -1
+	}
+}
+
+{$DOMAIN_LANGFUSE} {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Content-Type-Options    "nosniff"
+		Referrer-Policy           "strict-origin-when-cross-origin"
+		Permissions-Policy        "interest-cohort=()"
+		-Server
+	}
+
+	reverse_proxy langfuse-web:3000
+}
