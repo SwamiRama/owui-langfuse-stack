@@ -51,7 +51,7 @@ auto-HTTPS, optional OAuth/SSO. One server, one `docker compose up -d`.
 | PostgreSQL | `postgres:17-alpine` | Langfuse transactional DB |
 | ClickHouse | `clickhouse/clickhouse-server:24.12-alpine` | Langfuse OLAP traces |
 | Redis | `redis:7-alpine` | Langfuse queue + cache |
-| MinIO | `minio/minio:RELEASE.2025-10-15…` | S3-compatible blob store |
+| MinIO | `minio/minio:RELEASE.2025-09-07…` | S3-compatible blob store |
 
 ---
 
