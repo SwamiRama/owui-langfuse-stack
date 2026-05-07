@@ -291,7 +291,9 @@ services:
       - clickhouse_data:/var/lib/clickhouse
       - clickhouse_logs:/var/log/clickhouse-server
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8123/ping"]
+      # Use 127.0.0.1 (not localhost) — busybox resolves localhost to [::1]
+      # but ClickHouse only binds IPv4 on default Docker bridge networks.
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "-qO-", "http://127.0.0.1:8123/ping"]
       interval: 5s
       timeout: 5s
       retries: 10
