@@ -101,10 +101,16 @@ Generate everything in one shot:
   echo "POSTGRES_PASSWORD=$(openssl rand -base64 32 | tr -d '=+/')"
   echo "CLICKHOUSE_PASSWORD=$(openssl rand -base64 32 | tr -d '=+/')"
   echo "LANGFUSE_INIT_USER_PASSWORD=$(openssl rand -base64 24 | tr -d '=+/')"
+  echo "LANGFUSE_INIT_ORG_ID=$(uuidgen | tr '[:upper:]' '[:lower:]')"
+  echo "LANGFUSE_INIT_PROJECT_ID=$(uuidgen | tr '[:upper:]' '[:lower:]')"
   echo "LANGFUSE_INIT_PROJECT_PUBLIC_KEY=pk-lf-$(openssl rand -hex 16)"
   echo "LANGFUSE_INIT_PROJECT_SECRET_KEY=sk-lf-$(openssl rand -hex 32)"
 } >> .env
 ```
+
+> **`LANGFUSE_INIT_ORG_ID` and `LANGFUSE_INIT_PROJECT_ID` are required.**
+> If left empty, Langfuse silently skips headless init and you'll have
+> to create the org/project manually via the UI's signup flow.
 
 Then open `.env` and:
 

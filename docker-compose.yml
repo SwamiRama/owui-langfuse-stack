@@ -135,6 +135,10 @@ services:
     logging: *default-logging
     expose: ["3000"]
     environment: &langfuse-env
+      # Bind on all interfaces — Next.js 16 defaults to the container
+      # hostname, which makes localhost/127.0.0.1 healthchecks fail.
+      HOSTNAME: "0.0.0.0"
+
       # Core
       NEXTAUTH_URL: ${LANGFUSE_URL}
       NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
